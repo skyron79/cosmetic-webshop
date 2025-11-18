@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include 'navbar.php';
+
 ?>
 
 <html lang="en">
