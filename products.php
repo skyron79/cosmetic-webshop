@@ -11,7 +11,6 @@ include_once(__DIR__ . '/data.inc.php');
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-
 <title>Product Card</title>
 <body>
     <section>

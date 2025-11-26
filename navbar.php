@@ -23,19 +23,25 @@ a{
     }
 
 .sign-in, .sign-up {
-    padding: 5px 15px;
-    background-color: #FF802C;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+        width: 120px;
+        margin: 0 5px;
+        background-color: transparent;
+        padding: 5px;
+        border: 2px solid #64230d; ;
+        border-radius: 1vw;
+        color: #64230d;;
+        cursor: pointer;
 }
 
 .sign-in:hover, .sign-up:hover {
-    background-color: #e6731f;
+    background-color:#64230d;
+        color: white;
+        transition: 0.5s;
+}
+.icons{
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 </style>
 
@@ -62,9 +68,9 @@ a{
 
         <div>
             <ul class="icons">
-               <button><i class="fa-solid fa-circle-user"></i></button>
-               <button><i class="fa-solid fa-heart"></i></button>
-               <button><i class="fa-solid fa-cart-shopping"></i></button>
+               <button class="icons"><i class="fa-solid fa-circle-user"></i></button>
+               <button class="icons"><i class="fa-solid fa-heart"></i></button>
+               <button class="icons"><i class="fa-solid fa-cart-shopping"></i></button>
             </ul>
         </div>
         </div>

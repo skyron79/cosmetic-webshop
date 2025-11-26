@@ -3,7 +3,7 @@
 
 $colletion = [
     [
-        
+ 
         'name' => 'Hydrating Face Cream',
         'description' => 'A lightweight moisturizer suitable for all skin types.',
         'price' => 29.99,
@@ -11,7 +11,7 @@ $colletion = [
         'ingredients' => ['Aloe Vera', 'Hyaluronic Acid', 'Vitamin E']
     ],
     [
-      
+     
         'name' => 'Vitamin C Serum',
         'description' => 'Brightens skin and reduces signs of aging.',
         'price' => 39.99,
@@ -35,7 +35,6 @@ $colletion = [
         'ingredients' => ['Jojoba Beads', 'Aloe Vera', 'Chamomile Extract']
     ],
     [
-        
         'name' => 'Gentle Exfoliating Scrub',
         'description' => 'Removes dead skin cells for a smoother complexion.',
         'price' => 24.99,
