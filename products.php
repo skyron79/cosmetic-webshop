@@ -15,8 +15,9 @@ include_once(__DIR__ . '/data.inc.php');
 <body>
     <section>
         <h1 style="text-align: center;">our products</h1>
+
          <div class="products-container">
-          <?php foreach ($colletion as $key => $product): ?>
+          <?php foreach ($collection as $key => $product): ?>
             <a class="product-link" href="details.php?id=<?php echo $key; ?>">
             <div class="product-card">
                 <img src="<?php echo $product['image']; ?>" alt="Product Image" class="product-image" />

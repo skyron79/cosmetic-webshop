@@ -1,8 +1,46 @@
-<!DOCTYPE html>
 <?php
+include_once(__DIR__ . "/classes/customer.php");
+ 
+try{
+
+    // function canLogin($p_username, $p_password){
+    // if($p_username === "admin" && $p_password === "password123"){
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+    // }
+
+
+    if(!empty($_POST)){
+        // retrieve data from form
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // create customer object
+        $customer = new Customer();
+        $customer->setUsername($username);
+        $customer->setPassword($password);  
+        // attempt login
+        if ($customer->login($username, $password)) {
+            // login successful
+            session_start();
+            $_SESSION['username'] = $customer->getUsername();
+            header("Location: index.php");
+        } else {
+            // login failed
+            echo "Invalid username or password.";
+        }
+    }  
+
+} catch(Exception $e){
+    echo "Error: " . $e->getMessage(); }
+
+ 
 
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -103,17 +141,17 @@
     <div  class="login-page">
         <a class="back-button" href="index.php">back</a>
 
-        <div class="login-form">
+    <div class="login-form">
         <div class="logo-container">
             <img class="logo-signup" src="./assets/pictures/images.jpg" alt="">
         </div>
 
         <h2>Log In</h2>
-            <form action="authenticate.php" method="POST">
+            <form action="" method="POST">
                 <input class="login-input" type="text" id="username" name="username"  placeholder="Enter username" required>
                 <input class="login-input" type="password" id="password" name="password" placeholder="Enter password" required>
             
-                <button class="login-button" type="submit">Login</button>
+                <button class="login-button" type="submit">Log in</button>
                 <button class="login-button" type="button" onclick="window.location.href='signUp.php'">Sign Up</button>
             </form>
     </div>

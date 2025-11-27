@@ -1,7 +1,7 @@
 
 <?php
 
-$colletion = [
+$collection = [
     [
  
         'name' => 'Hydrating Face Cream',

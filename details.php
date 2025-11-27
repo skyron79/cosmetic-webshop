@@ -1,13 +1,17 @@
 <?php
 include 'navbar.php';
-include_once(__DIR__ . "/data.inc.php")
+include_once(__DIR__ . "/data.inc.php");
 
-$id = $_GET['id'];
-if(!is_numeric($id)){
+ $id = $_GET['id'];
+  
+  if(!is_numeric($id)){
     exit("Try Again");
-}
+  }
 
-$item = $collection[$id];
+  $item = $collection[$id];
+
+
+
 
 ?>
 
@@ -20,6 +24,6 @@ $item = $collection[$id];
     <title>Document</title>
 </head>
 <body>
-    <h1><?php echo htmlspecialchars($item['name']); ?></h1>
+    <h1><?php echo ($item['name']); ?></h1>
 </body>
 </html>
