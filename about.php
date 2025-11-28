@@ -1,5 +1,5 @@
 <?php
-include 'navbar.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +11,9 @@ include 'navbar.php';
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <?php include_once(__DIR__ . '/navbar.php'); ?>
+    </header>
     
 </body>
 </html>

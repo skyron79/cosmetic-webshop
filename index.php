@@ -1,11 +1,5 @@
 <?php
-include 'navbar.php';
-session_start();
-if(isset($_SESSION['username'])){
-    echo "Welcome, " . $_SESSION['username'] . "!";
-} else {
-    echo "Welcome, guest! Please <a href='login.php'>log in</a>.";
-}
+    
 
 ?>
 <!DOCTYPE html>
@@ -18,6 +12,11 @@ if(isset($_SESSION['username'])){
 </head>
 <body>
 <section>
+    <header>
+        <?php include_once(__DIR__ . '/navbar.php'); ?>
+    </header>
+
+
     <div class="container">
 
         <h1>skin-care</h1>

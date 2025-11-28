@@ -2,6 +2,7 @@
 include_once(__DIR__ . "/database.php");
 
 class Customer {
+
     private $email;
     private $username;
     private $password;
@@ -47,13 +48,31 @@ class Customer {
     public function login($p_username, $p_password){
 
         $db= Database::getconnection();
-        $stmt = $db->prepare("SELECT * FROM customer WHERE name = :username AND password = :password");
+        $stmt = $db->prepare("SELECT * FROM customer WHERE name = :username");
         $stmt-> bindParam(':username', $p_username);
-        $stmt-> bindParam(':password', $p_password);
         $stmt-> execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+         // 3. Verify password
+         if(password_verify($p_password, $user['password'])){
+            return $user; // Login successful
+
+            } else {
+            throw new Exception("Invalid password");
+
+            }
+        
+    }
+
+    public function register(){
+
+        $db= Database::getconnection();
+        $stmt = $db->prepare("INSERT INTO customer (name, email, password) VALUES (:username, :email, :password)");
+        $stmt-> bindParam(':username', $this->username);
+        $stmt-> bindParam(':email', $this->email);
+        $stmt-> bindParam(':password', $this->password);
+        $stmt-> execute();
 
     }
 }

@@ -1,5 +1,5 @@
 <?php
-include 'navbar.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +44,10 @@ include 'navbar.php';
 
 </style>
 <body>
+    <header>
+        <?php include_once(__DIR__ . '/navbar.php'); ?>
+    </header>
+    
     <section>
         <form class="search-form" action="" method="post">
             <input type="text" name="search" placeholder="Search...">

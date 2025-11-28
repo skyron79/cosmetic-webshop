@@ -1,5 +1,4 @@
 <?php
-include 'navbar.php';
 include_once(__DIR__ . '/data.inc.php');
 ?>
 
@@ -13,6 +12,10 @@ include_once(__DIR__ . '/data.inc.php');
 </head>
 <title>Product Card</title>
 <body>
+    <header>
+        <?php include_once(__DIR__ . '/navbar.php'); ?>
+    </header>
+
     <section>
         <h1 style="text-align: center;">our products</h1>
 

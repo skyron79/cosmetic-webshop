@@ -3,15 +3,6 @@ include_once(__DIR__ . "/classes/customer.php");
  
 try{
 
-    // function canLogin($p_username, $p_password){
-    // if($p_username === "admin" && $p_password === "password123"){
-    //     return true;
-    // } else {
-    //     return false;
-    // }
-    // }
-
-
     if(!empty($_POST)){
         // retrieve data from form
         $username = $_POST['username'];
@@ -21,22 +12,35 @@ try{
         $customer = new Customer();
         $customer->setUsername($username);
         $customer->setPassword($password);  
+
+
+        // password verification
+        // $loggedInUser = $customer->login($username, $hashedPassword);
+
+        // if($loggedInUser){
+        //     // login successful
+        //     session_start();
+        //     $_SESSION['username'] = $loggedInUser['name'];
+        //     // header("Location: index.php");
+        // } else {
+        //     throw new Exception("Invalid username or password");
+        // }
+
         // attempt login
         if ($customer->login($username, $password)) {
+          
             // login successful
             session_start();
             $_SESSION['username'] = $customer->getUsername();
             header("Location: index.php");
         } else {
-            // login failed
-            echo "Invalid username or password.";
+            throw new Exception("Invalid username or password");
         }
     }  
 
 } catch(Exception $e){
-    echo "Error: " . $e->getMessage(); }
-
- 
+   $error = $e->getMessage(); 
+}
 
 ?>
 
@@ -135,8 +139,21 @@ try{
          color: #FF802C !important;
         --underline-width: 100%;
     }
+    .error-box{
+        padding: 12px 15px;
+        margin:auto;
+        margin-bottom: 20px;
+        background-color: #ffdddd;
+        border: 1px solid #ff8888;
+        color: #a10000;
+        border-radius: 6px;
+        font-family: Arial, sans-serif;
+        width: fit-content;
+    }
 
 </style>
+
+
 <body> 
     <div  class="login-page">
         <a class="back-button" href="index.php">back</a>
@@ -146,15 +163,24 @@ try{
             <img class="logo-signup" src="./assets/pictures/images.jpg" alt="">
         </div>
 
+        <?php if(isset($error)): ?>
+            <div class="error-box show">
+            <?php echo $error; ?>
+            </div>
+        <?php endif; ?>
+
+    
+
         <h2>Log In</h2>
             <form action="" method="POST">
-                <input class="login-input" type="text" id="username" name="username"  placeholder="Enter username" required>
-                <input class="login-input" type="password" id="password" name="password" placeholder="Enter password" required>
+                <input class="login-input" type="text" id="username" name="username"  placeholder="Enter username" >
+                <input class="login-input" type="password" id="password" name="password" placeholder="Enter password" >
             
-                <button class="login-button" type="submit">Log in</button>
+                <input type="submit" class="login-button" value="Log In">
                 <button class="login-button" type="button" onclick="window.location.href='signUp.php'">Sign Up</button>
             </form>
     </div>
-   </div>
+    
+
 </body>
 </html>
