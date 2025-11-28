@@ -164,4 +164,23 @@ i:hover{
       background: #2563eb;
     }
 
+/* homepage
+*/
+
+  .hero-section {
+        height: 100vh;
+        background-image: url('./assets/pictures/homepageImg.png');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
    

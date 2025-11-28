@@ -41,20 +41,22 @@
         color: #FF802C !important;
         --underline-width: 100%;
     }
-
 </style>
+
+
 <body>
     <header>
         <?php include_once(__DIR__ . '/navbar.php'); ?>
     </header>
-    
+
+ <main>
     <section>
         <form class="search-form" action="" method="post">
             <input type="text" name="search" placeholder="Search...">
             <button type="submit">Search</button>
         </form>
-
-        
     </section>
+</main>
+
 </body>
 </html>

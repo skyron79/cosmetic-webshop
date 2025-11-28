@@ -12,6 +12,7 @@ include_once(__DIR__ . '/data.inc.php');
 </head>
 <title>Product Card</title>
 <body>
+  
     <header>
         <?php include_once(__DIR__ . '/navbar.php'); ?>
     </header>

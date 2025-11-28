@@ -12,12 +12,28 @@ $customer = new Customer();
 <html lang="en">
 <head>
    <script src="https://kit.fontawesome.com/9fe4bfcebd.js" crossorigin="anonymous"></script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <style>
+.navbar{
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.navbar li a {
+    text-decoration: none;
+    color: #603002ff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
 a{
     text-decoration: none; 
 
@@ -27,7 +43,7 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-     padding: 10px 20px;
+    padding: 10px 20px;
     }
 
 .sign-in, .sign-up {
@@ -35,14 +51,14 @@ a{
         margin: 0 5px;
         background-color: transparent;
         padding: 5px;
-        border: 2px solid #64230d; ;
+        border: 2px solid #ef7d25ff;
         border-radius: 1vw;
-        color: #64230d;;
+        color: #ef7d25ff;;
         cursor: pointer;
 }
 
 .sign-in:hover, .sign-up:hover {
-    background-color:#64230d;
+        background-color:#ef7d25ff;
         color: white;
         transition: 0.5s;
 }
@@ -52,27 +68,41 @@ a{
     gap: 20px;
 }
 .navbar-container{
-    margin:auto;
-    padding: 10px 30px;
+    width: 100%;
+    margin: auto;
+    padding: 0px 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
+
+.icons button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.login-link:hover {
+    color: #ef7d25ff;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
 </style>
 
 <body>
-    <nav nav class="navbar-container">
+    
+    <nav class="navbar-container">
         <div class="logo-container">
               <div>   
                 <?php 
                 if(isset($_SESSION['username'])){
                     echo "<h2 style=\"color: #ef7d25ff;\">" . $_SESSION['username'] . "</h2>";
                 } else {
-                    echo "<h2>Welcome, guest! Please <a href='login.php'>log in</a>.</h2>";
+                    echo "<h2 style=\"color: #603002ff;\">Welcome, guest! Please <a class=\"login-link\" href='login.php'>log in</a>.</h2>";
                 }
                 ?>
             </div>
@@ -87,15 +117,13 @@ a{
 
             } else {
                 echo "<div class=\"sign-in-up\">
-                <a href=\"./login.php\"> <button class=\"sign-in\">Sign In</button></a>
-                <a href=\"./register.php\"> <button class=\"sign-up\">Sign Up</button></a>
+                <a href=\"./signup.php\"> <button class=\"sign-up\">Sign Up</button></a>
                 </div>";
 
             } ?>
         </div>
 
-        <br>
-        <hr>
+        <hr  style="color: #603002ff;">
         <div class="links-container">
           <ul class="navbar">
             <li><a href="./index.php" class="<?= $current_page === 'index.php' ? 'active' : '' ?>">Home</a></li>
@@ -104,13 +132,13 @@ a{
             <li><a href="./search.php" class="<?= $current_page == 'search.php' ? 'active' : '' ?>">Search</a></li>
          </ul>
 
-        <div>
+        <!-- <div>
             <ul class="icons">
                <button class="icons"><i class="fa-solid fa-circle-user"></i></button>
                <button class="icons"><i class="fa-solid fa-heart"></i></button>
                <button class="icons"><i class="fa-solid fa-cart-shopping"></i></button>
             </ul>
-        </div>
+        </div> -->
         </div>
     </nav>
 </body>
