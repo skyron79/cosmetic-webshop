@@ -33,7 +33,6 @@ $customer = new Customer();
     border-radius: 5px;
 }
 
-
 a{
     text-decoration: none; 
 
@@ -71,11 +70,11 @@ a{
     width: 100%;
     margin: auto;
     padding: 0px 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     font-size: 1.2rem;
     font-weight: 500;
+    position: relative;
+
+ 
 }
 
 .icons button{
@@ -90,11 +89,10 @@ a{
     font-weight: bold;
     transition: 0.3s;
 }
-
 </style>
 
 <body>
-    
+    <div class="container">
     <nav class="navbar-container">
         <div class="logo-container">
               <div>   
@@ -102,7 +100,7 @@ a{
                 if(isset($_SESSION['username'])){
                     echo "<h2 style=\"color: #ef7d25ff;\">" . $_SESSION['username'] . "</h2>";
                 } else {
-                    echo "<h2 style=\"color: #603002ff;\">Welcome, guest! Please <a class=\"login-link\" href='login.php'>log in</a>.</h2>";
+                    echo "<h2 style=\"color: #603002ff;\">Welcome, guest! Please <a  class=\"login-link\" href='login.php'>log in</a>.</h2>";
                 }
                 ?>
             </div>
@@ -141,5 +139,6 @@ a{
         </div> -->
         </div>
     </nav>
+    </div>
 </body>
 </html> 

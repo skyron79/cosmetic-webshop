@@ -68,6 +68,15 @@ class Customer {
     public function register(){
 
         $db= Database::getconnection();
+
+        $check= $db->prepare("SELECT * FROM customer WHERE email = :email");
+        $check->bindParam(':email', $this->email);
+        $check->execute();
+
+        if($check->rowCount() > 0){
+            throw new Exception("user already exists");
+        }
+   
         $stmt = $db->prepare("INSERT INTO customer (name, email, password) VALUES (:username, :email, :password)");
         $stmt-> bindParam(':username', $this->username);
         $stmt-> bindParam(':email', $this->email);

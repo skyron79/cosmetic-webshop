@@ -25,6 +25,8 @@ include_once(__DIR__ . '/data.inc.php');
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 2px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
     }
 </style>
 

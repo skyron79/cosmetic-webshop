@@ -133,14 +133,37 @@ try {
         --underline-width: 100%;
     }
 
+    .error-box{
+        padding: 12px 15px;
+        margin:auto;
+        margin-bottom: 20px;
+        background-color: #ffdddd;
+        border: 1px solid #ff8888;
+        color: #a10000;
+        border-radius: 6px;
+        font-family: Arial, sans-serif;
+        width: fit-content;
+    }
+
 </style>
 <body> 
     <div  class="login-page">
         <a class="back-button" href="index.php">back</a>
 
-        <div class="login-form">
+        
 
-        <h2>Create an account</h2>
+        <div class="login-form">
+            
+            
+            <h2>Create an account</h2>
+
+            <?php if(isset($error)): ?>
+            <div class="error-box show">
+            <?php echo $error; ?>
+            </div>
+
+            <?php endif; ?>
+            
             <form action="" method="POST">
                 <input class="login-input" type="text" id="username" name="username"  placeholder="Enter username" required>
                 <input class="login-input" type="email" id="email" name="email" placeholder="Enter email" required>
