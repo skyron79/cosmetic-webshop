@@ -28,7 +28,7 @@ $customer = new Customer();
 }
 .navbar li a {
     text-decoration: none;
-    color: #603002ff;
+    color: grey;
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -67,14 +67,13 @@ a{
     gap: 20px;
 }
 .navbar-container{
+    margin:auto;
     width: 100%;
-    margin: auto;
     padding: 0px 15px;
     font-size: 1.2rem;
     font-weight: 500;
-    position: relative;
-
- 
+    background:transparent;
+    position: absolute;
 }
 
 .icons button{
@@ -84,11 +83,15 @@ a{
     font-size: 1.5rem;
     cursor: pointer;
 }
+.login-link {
+    color: grey;
+}
 .login-link:hover {
     color: #ef7d25ff;
     font-weight: bold;
     transition: 0.3s;
 }
+
 </style>
 
 <body>
@@ -100,7 +103,7 @@ a{
                 if(isset($_SESSION['username'])){
                     echo "<h2 style=\"color: #ef7d25ff;\">" . $_SESSION['username'] . "</h2>";
                 } else {
-                    echo "<h2 style=\"color: #603002ff;\">Welcome, guest! Please <a  class=\"login-link\" href='login.php'>log in</a>.</h2>";
+                    echo "<h2 style=\"color: grey;\">Welcome, guest! Please <a  class=\"login-link\" href='login.php'>log in</a>.</h2>";
                 }
                 ?>
             </div>
@@ -121,7 +124,9 @@ a{
             } ?>
         </div>
 
-        <hr  style="color: #603002ff;">
+        <br>
+        <hr>
+
         <div class="links-container">
           <ul class="navbar">
             <li><a href="./index.php" class="<?= $current_page === 'index.php' ? 'active' : '' ?>">Home</a></li>
@@ -129,14 +134,6 @@ a{
             <li><a href="./products.php" class="<?= $current_page == 'products.php' ? 'active' : '' ?>">Products</a></li>
             <li><a href="./search.php" class="<?= $current_page == 'search.php' ? 'active' : '' ?>">Search</a></li>
          </ul>
-
-        <!-- <div>
-            <ul class="icons">
-               <button class="icons"><i class="fa-solid fa-circle-user"></i></button>
-               <button class="icons"><i class="fa-solid fa-heart"></i></button>
-               <button class="icons"><i class="fa-solid fa-cart-shopping"></i></button>
-            </ul>
-        </div> -->
         </div>
     </nav>
     </div>

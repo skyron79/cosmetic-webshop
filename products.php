@@ -8,17 +8,22 @@ include_once(__DIR__ . '/data.inc.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>malukayi cosmetics</title>
 </head>
+<style>
+    .body-products{
+         margin-top: 12rem;
+    }
+</style>
 <title>Product Card</title>
 <body>
   
     <header>
         <?php include_once(__DIR__ . '/navbar.php'); ?>
     </header>
-
-    <section>
-        <h1 style="text-align: center;">our products</h1>
+    <main class='body-products'>
+        <section>
+            <h1 style="text-align: center;">our products</h1>
 
          <div class="products-container">
           <?php foreach ($collection as $key => $product): ?>
@@ -35,7 +40,7 @@ include_once(__DIR__ . '/data.inc.php');
             </a>
             <?php endforeach; ?>
          </div>
-     
-    </section>
+        </section>
+    </main>
 </body>
 </html>

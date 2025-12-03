@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>malukayi cosmetics</title>
 </head>
 
 <style>
@@ -41,6 +41,11 @@
         color: #FF802C !important;
         --underline-width: 100%;
     }
+
+    .body-products{
+         margin-top: 12rem;
+    }
+
 </style>
 
 
@@ -49,7 +54,7 @@
         <?php include_once(__DIR__ . '/navbar.php'); ?>
     </header>
 
- <main>
+ <main class='body-products'>
     <section>
         <form class="search-form" action="" method="post">
             <input type="text" name="search" placeholder="Search...">

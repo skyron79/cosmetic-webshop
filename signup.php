@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include_once(__DIR__ . '/classes/Customer.php');
 
@@ -10,45 +9,37 @@ try {
 
 try {
     if (!empty($_POST)) {
+
         // retrieve data from form
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-
-        //hash password
-        
-        $option=[
-            'cost'=>12
-        ];
-
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT, $option);
-
+       
         // create customer object
         $customer = new Customer();
         $customer->setUsername($username);
         $customer->setEmail($email);
-        $customer->setPassword($hashedPassword);
+        $customer->setPassword($password);
 
         // attempt registration
-        if ($customer->register($username, $email, $hashedPassword)) {
+        if ($customer->register($username, $email, $password)) {
             // registration successful
             header("Location: login.php");
         }
     }
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }
-
-
-
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>malukayi cosmetics</title>
 </head>
 
 <style>

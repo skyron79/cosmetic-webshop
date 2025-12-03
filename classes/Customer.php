@@ -65,22 +65,48 @@ class Customer {
         
     }
 
+    //private functie check op username en email
+    private function checkUser(){
+
+        $db= Database::getconnection();
+        $checkEmail= $db->prepare("SELECT * FROM customer WHERE email = :email");
+        $checkEmail->bindParam(':email', $this->email);
+        $checkEmail->execute();
+
+        if($checkEmail->rowCount() > 0){
+            throw new Exception("email already exist");
+        }
+
+        $checkUsername= $db->prepare("SELECT * FROM customer WHERE name = :name");
+        $checkUsername->bindParam(':name', $this->username);
+        $checkUsername->execute();
+
+        if($checkUsername ->rowCount() > 0){
+            throw new Exception("username already taken");
+        }
+
+
+    }
+    
+    //password hashen in register functie 
     public function register(){
+
+        $option=[
+            'cost'=>12
+        ];
+
+        $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT, $option);
+
 
         $db= Database::getconnection();
 
-        $check= $db->prepare("SELECT * FROM customer WHERE email = :email");
-        $check->bindParam(':email', $this->email);
-        $check->execute();
-
-        if($check->rowCount() > 0){
-            throw new Exception("user already exists");
-        }
-   
         $stmt = $db->prepare("INSERT INTO customer (name, email, password) VALUES (:username, :email, :password)");
         $stmt-> bindParam(':username', $this->username);
         $stmt-> bindParam(':email', $this->email);
-        $stmt-> bindParam(':password', $this->password);
+        $stmt-> bindParam(':password', $hashedPassword);
+
+        $this->checkUser();
+
         $stmt-> execute();
 
     }

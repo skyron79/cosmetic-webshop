@@ -7,7 +7,7 @@ include_once(__DIR__ . '/data.inc.php');
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>malukayi cosmetics</title>
 </head>
 
 <style>
@@ -25,8 +25,12 @@ include_once(__DIR__ . '/data.inc.php');
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 2px;
+    
+    }
+    .best-sellers{
         border-top-left-radius: 30px;
         border-top-right-radius: 30px;
+
     }
 </style>
 
@@ -35,42 +39,39 @@ include_once(__DIR__ . '/data.inc.php');
     <header>
         <?php include_once(__DIR__ . '/navbar.php'); ?>
     </header>
-
-    <section class="hero-section">
+    <main>
+        <section class="hero-section">
         <div>
             <h1>
                 skincare
             </h1>
             <h1> for black and lightskins</h1>
         </div>
-    </section>
+        </section>
 
-    <section class="best-sellers">
-        <h2 style="text-align: center; margin-top: 50px; color: #64230d;">Best Sellers</h2>
+        <section class="best-sellers">
 
-         <div class="products-container">
-          <?php foreach ($collection as $key => $product): ?>
-            <a class="product-link" href="details.php?id=<?php echo $key; ?>">
-            <div class="product-card">
+            <div class="best-sellers">   
+                <h2 style="text-align: center; margin-top: 50px; color: #64230d;">Best Sellers</h2>
+
+                <div class="products-container">
+                <?php foreach ($collection as $key => $product): ?>
+                <a class="product-link" href="details.php?id=<?php echo $key; ?>">
+                <div class="product-card">
                 <img src="<?php echo $product['image']; ?>" alt="Product Image" class="product-image" />
                 <div class="product-info">
                 <h2 class="product-title"><?php echo $product['name']; ?></h2>
                 <p class="product-desc"><?php echo $product['description']; ?></p>
                 <div class="product-price">€<?php echo $product['price']; ?></div>
                 <a href="#" class="buy-btn">Buy Now</a>
-              </div>
-            </div>
-            </a>
-            <?php endforeach; ?>
-         </div>
-        
+                </div>
+                </div>
+                </a>
+                <?php endforeach; ?>
+            </div>   
 
-    </section>
-
-       
-    
-</section>
-    
+        </section>
+    </main>
 
    
     

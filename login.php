@@ -13,26 +13,13 @@ try{
         $customer->setUsername($username);
         $customer->setPassword($password);  
 
-
-        // password verification
-        // $loggedInUser = $customer->login($username, $hashedPassword);
-
-        // if($loggedInUser){
-        //     // login successful
-        //     session_start();
-        //     $_SESSION['username'] = $loggedInUser['name'];
-        //     // header("Location: index.php");
-        // } else {
-        //     throw new Exception("Invalid username or password");
-        // }
-
-        // attempt login
         if ($customer->login($username, $password)) {
           
             // login successful
             session_start();
             $_SESSION['username'] = $customer->getUsername();
             header("Location: index.php");
+            
         } else {
             throw new Exception("Invalid username or password");
         }
@@ -50,7 +37,7 @@ try{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>malukayi cosmetics</title>
 </head>
 
 <style>

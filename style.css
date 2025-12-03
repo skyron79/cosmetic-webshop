@@ -1,11 +1,17 @@
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: poppins, sans-serif;
     font-size: 15px;
-    color: #240C04;
+    /* color: #240C04; */
     overflow-x: hidden;
+}
+
+  ::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
 }
 
 
@@ -182,5 +188,12 @@ i:hover{
         text-transform: uppercase;
         letter-spacing: 2px;
     }
+/* product page
+*/
+
+
+/* aboutpage
+*/
+
 
    
