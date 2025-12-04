@@ -43,9 +43,10 @@ include_once(__DIR__ . '/data.inc.php');
         <section class="hero-section">
         <div>
             <h1>
-                skincare
+                Glow in Your True Shade.
             </h1>
-            <h1> for black and lightskins</h1>
+            <h1>Nature-powered skincare crafted for every skin tone — clean, inclusive, and enriched with African botanicals. 
+                Discover the beauty of balance with Malukayi Cosmetics.</h1>
         </div>
         </section>
 
