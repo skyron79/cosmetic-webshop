@@ -1,5 +1,5 @@
 <?php
-include 'navbar.php';
+
 include_once(__DIR__ . "/data.inc.php");
 
  $id = $_GET['id'];
@@ -14,6 +14,11 @@ include_once(__DIR__ . "/data.inc.php");
 
 
 ?>
+<style>
+  .details{
+   margin-top: 12rem;
+  }
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +29,12 @@ include_once(__DIR__ . "/data.inc.php");
    <title>malukayi cosmetics</title>
 </head>
 <body>
-    <h1><?php echo ($item['name']); ?></h1>
+  <header>
+    <?php include 'navbar.php';?>
+  </header>
+
+    <section class='details'>
+        <h1><?php echo ($item['name']); ?></h1>
+    </section>
 </body>
 </html>
