@@ -143,6 +143,17 @@
             </div>
             </div>
         </section>
+
+
+        <section class="brand-section">
+            <div class="brand-text">
+                <h1 style="color: white;">
+               Brand
+                </h1>
+                <p style="color: white; width:50%;"> Malukayi Cosmetics is a skincare brand created for every shade of beauty — from the lightest tones to the deepest complexions. We believe that true skincare begins with nature, which is why our formulas are powered by pure, high-quality ingredients, including botanicals sourced straight from the heart of Africa. 
+                Our mission is simple: to deliver effective, gentle, and authentic skincare that celebrates diversity and empowers confidence. With Malukayi Cosmetics, you don’t just treat your skin — you honor it.</p>
+             </div>
+        </section>
     </main>
 </body>
 </html>

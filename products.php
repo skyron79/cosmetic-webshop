@@ -1,5 +1,10 @@
 <?php
-include_once(__DIR__ . '/data.inc.php');
+include_once(__DIR__ . "/classes/Productrepository.php");
+// include_once(__DIR__. 'data.inc.php');
+
+$productrepo = new ProductRepository();
+$products = $productrepo->getAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -10,11 +15,13 @@ include_once(__DIR__ . '/data.inc.php');
     <link rel="stylesheet" href="style.css">
     <title>malukayi cosmetics</title>
 </head>
+
 <style>
     .body-products{
          margin-top: 12rem;
     }
 </style>
+
 <title>Product Card</title>
 <body>
   
@@ -22,7 +29,7 @@ include_once(__DIR__ . '/data.inc.php');
         <?php include_once(__DIR__ . '/navbar.php'); ?>
     </header>
     <main class='body-products'>
-        <section>
+        <!-- <section>
             <h1 style="text-align: center;">our products</h1>
 
          <div class="products-container">
@@ -40,7 +47,38 @@ include_once(__DIR__ . '/data.inc.php');
             </a>
             <?php endforeach; ?>
          </div>
-        </section>
+        </section> -->
+
+        <section>
+        <h1 style="text-align: center;">Our products</h1>
+
+        <div class="products-container">
+            <?php foreach ($products as $product): ?>
+                <a class="product-link" href="details.php">
+                    <div class="product-card">
+
+                        <div class="product-info">
+                            <h2 class="product-title">
+                                <?= htmlspecialchars($product->getName()); ?>
+                            </h2>
+
+                            <p class="product-desc">
+                                <?= htmlspecialchars($product->getDescription()); ?>
+                            </p>
+
+                            <div class="product-price">
+                                €<?= number_format($product->getPrice(), 2); ?>
+                            </div>
+
+                            <span class="buy-btn">Buy Now</span>
+                        </div>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </section>
+
+
     </main>
 </body>
 </html>
