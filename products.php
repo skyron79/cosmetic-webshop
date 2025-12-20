@@ -1,5 +1,11 @@
 <?php
-include_once(__DIR__ . '/data.inc.php');
+include_once(__DIR__ . "/classes/Productrepository.php");
+// include_once(__DIR__. 'data.inc.php');
+
+$productrepo = new ProductRepository();
+$products = $productrepo->getAll();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -10,11 +16,13 @@ include_once(__DIR__ . '/data.inc.php');
     <link rel="stylesheet" href="style.css">
     <title>malukayi cosmetics</title>
 </head>
+
 <style>
     .body-products{
          margin-top: 12rem;
     }
 </style>
+
 <title>Product Card</title>
 <body>
   
@@ -22,25 +30,38 @@ include_once(__DIR__ . '/data.inc.php');
         <?php include_once(__DIR__ . '/navbar.php'); ?>
     </header>
     <main class='body-products'>
+
         <section>
-            <h1 style="text-align: center;">our products</h1>
+            <h1 style="text-align: center;">Our products</h1>
 
          <div class="products-container">
-          <?php foreach ($collection as $key => $product): ?>
-            <a class="product-link" href="details.php?id=<?php echo $key; ?>">
-            <div class="product-card">
-                <img src="<?php echo $product['image']; ?>" alt="Product Image" class="product-image" />
-                <div class="product-info">
-                <h2 class="product-title"><?php echo $product['name']; ?></h2>
-                <p class="product-desc"><?php echo $product['description']; ?></p>
-                <div class="product-price">€<?php echo $product['price']; ?></div>
-                <a href="#" class="buy-btn">Buy Now</a>
-              </div>
-            </div>
-            </a>
+            <?php foreach ($products as $product): ?>
+                <a class="product-link" href="details.php?id=<?php  echo $product->getId();  ?>">
+                    <div class="product-card">
+                        <img src="https://picsum.photos/200/300" alt="Product Image" class="product-image" />
+
+                        <div class="product-info">
+                            <h2 class="product-title">
+                                <?= htmlspecialchars($product->getName()); ?>
+                            </h2>
+
+                            <p class="product-desc">
+                                <?= htmlspecialchars($product->getDescription()); ?>
+                            </p>
+
+                            <div class="product-price">
+                                €<?= number_format($product->getPrice(), 2); ?>
+                            </div>
+
+                            <span class="buy-btn">Buy Now</span>
+                        </div>
+                    </div>
+                </a>
             <?php endforeach; ?>
-         </div>
-        </section>
+            </div>
+    </section>
+
+
     </main>
 </body>
 </html>

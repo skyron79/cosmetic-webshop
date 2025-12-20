@@ -1,0 +1,93 @@
+{
+//productId ?
+//comment text ?
+document.addEventListener('DOMContentLoaded', () => {
+    const submitButton = document.querySelector('.submit-button');
+
+    // Guard: script loaded on page without reviews
+    if (!submitButton) return;
+
+    const reviewInput = document.querySelector('#review');
+    const reviewsDiv = document.querySelector('#reviews');
+
+    submitButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const productId = submitButton.dataset.productid;
+        const comment = reviewInput.value.trim();
+
+        if (!comment) {
+            alert('Review cannot be empty');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('product_id', productId);
+        formData.append('review', comment);
+
+        try {
+            const response = await fetch('ajax/post_review.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                alert(result.error);
+                return;
+            }
+
+            reviewInput.value = '';
+            loadReviews(productId);
+
+        } catch (err) {
+            alert('Network error');
+        }
+    });
+
+    loadReviews(submitButton.dataset.productid);
+});
+
+async function loadReviews(productId) {
+    const reviewsDiv = document.querySelector('#reviews');
+    if (!reviewsDiv) return;
+
+    try {
+        const response = await fetch(`ajax/get_review.php?product_id=${productId}`);
+        const reviews = await response.json();
+
+        reviewsDiv.innerHTML = '';
+
+        reviews.forEach(r => {
+            const reviewEl = document.createElement('div');
+            reviewEl.className = 'single-review';
+
+            const user = document.createElement('h2');
+            user.className = 'username';
+            user.textContent = r.username;
+
+            const comment = document.createElement('p');
+            comment.textContent = r.comment;
+
+            const date = document.createElement('span');
+            date.className = 'date';
+            date.textContent = r.created_at;
+
+            reviewEl.append(user, comment, date);
+            reviewsDiv.appendChild(reviewEl);
+        });
+
+    } catch {
+        reviewsDiv.innerHTML = '<p>Error loading reviews.</p>';
+    }
+}
+
+//post to database (ajax)?
+
+
+
+//
+//fetch comments for productId (ajax)?
+//display comments under product
+};

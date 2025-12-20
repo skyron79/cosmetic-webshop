@@ -101,7 +101,7 @@ a{
               <div>   
                 <?php 
                 if(isset($_SESSION['username'])){
-                    echo "<h2 style=\"color: #ef7d25ff;\">" . $_SESSION['username'] . "</h2>";
+                    echo "<h2 style=\"color: #ef7d25ff;\"> Welcome, ". $_SESSION['username'] ." 👋 </h2>";
                 } else {
                     echo "<h2 style=\"color: grey;\">Welcome, guest! Please <a  class=\"login-link\" href='login.php'>log in.</a></h2>";
                 }

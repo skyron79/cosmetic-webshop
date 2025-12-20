@@ -8,7 +8,9 @@ $collection = [
         'description' => 'A lightweight moisturizer suitable for all skin types.',
         'price' => 29.99,
         'image' => 'https://picsum.photos/200/300',
-        'ingredients' => ['Aloe Vera', 'Hyaluronic Acid', 'Vitamin E']
+        'ingredients' => ['Aloe Vera', 'Hyaluronic Acid', 'Vitamin E'], 
+        'category' => 'elongi'
+
     ],
     [
      
@@ -16,7 +18,8 @@ $collection = [
         'description' => 'Brightens skin and reduces signs of aging.',
         'price' => 39.99,
         'image' => 'https://picsum.photos/200/300',
-        'ingredients' => ['Vitamin C', 'Ferulic Acid', 'Hyaluronic Acid']
+        'ingredients' => ['Vitamin C', 'Ferulic Acid', 'Hyaluronic Acid'],
+        'category' => 'elongi'
     ],
     [
         
@@ -24,7 +27,8 @@ $collection = [
         'description' => 'Provides broad-spectrum protection against UV rays.',
         'price' => 19.99,
         'image' => 'https://picsum.photos/200/300',
-        'ingredients' => ['Zinc Oxide', 'Titanium Dioxide', 'Aloe Vera']
+        'ingredients' => ['Zinc Oxide', 'Titanium Dioxide', 'Aloe Vera'],
+        'category' => 'elongi'
     ],
     [
         
@@ -32,14 +36,16 @@ $collection = [
         'description' => 'Removes dead skin cells for a smoother complexion.',
         'price' => 24.99,
         'image' => 'https://picsum.photos/200/300',
-        'ingredients' => ['Jojoba Beads', 'Aloe Vera', 'Chamomile Extract']
+        'ingredients' => ['Jojoba Beads', 'Aloe Vera', 'Chamomile Extract'],
+        'category' => 'elongi'
     ],
     [
         'name' => 'Gentle Exfoliating Scrub',
         'description' => 'Removes dead skin cells for a smoother complexion.',
         'price' => 24.99,
         'image' => 'https://picsum.photos/200/300',
-        'ingredients' => ['Jojoba Beads', 'Aloe Vera', 'Chamomile Extract']
+        'ingredients' => ['Jojoba Beads', 'Aloe Vera', 'Chamomile Extract'],
+        'category' => 'elongi'
     ]
 ];
 ?>

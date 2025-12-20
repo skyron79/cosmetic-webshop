@@ -117,6 +117,7 @@ try {
         position: absolute;
         left: 20px;
         top: 20px;  
+        color:black;
     }
 
     .back-button:hover {
