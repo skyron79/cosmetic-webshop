@@ -5,6 +5,7 @@ include_once(__DIR__ . "/classes/Productrepository.php");
 $productrepo = new ProductRepository();
 $products = $productrepo->getAll();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -29,33 +30,15 @@ $products = $productrepo->getAll();
         <?php include_once(__DIR__ . '/navbar.php'); ?>
     </header>
     <main class='body-products'>
-        <!-- <section>
-            <h1 style="text-align: center;">our products</h1>
-
-         <div class="products-container">
-          <?php foreach ($collection as $key => $product): ?>
-            <a class="product-link" href="details.php?id=<?php echo $key; ?>">
-            <div class="product-card">
-                <img src="<?php echo $product['image']; ?>" alt="Product Image" class="product-image" />
-                <div class="product-info">
-                <h2 class="product-title"><?php echo $product['name']; ?></h2>
-                <p class="product-desc"><?php echo $product['description']; ?></p>
-                <div class="product-price">€<?php echo $product['price']; ?></div>
-                <a href="#" class="buy-btn">Buy Now</a>
-              </div>
-            </div>
-            </a>
-            <?php endforeach; ?>
-         </div>
-        </section> -->
 
         <section>
-        <h1 style="text-align: center;">Our products</h1>
+            <h1 style="text-align: center;">Our products</h1>
 
-        <div class="products-container">
+         <div class="products-container">
             <?php foreach ($products as $product): ?>
-                <a class="product-link" href="details.php">
+                <a class="product-link" href="details.php?id=<?php  echo $product->getId();  ?>">
                     <div class="product-card">
+                        <img src="https://picsum.photos/200/300" alt="Product Image" class="product-image" />
 
                         <div class="product-info">
                             <h2 class="product-title">
@@ -75,7 +58,7 @@ $products = $productrepo->getAll();
                     </div>
                 </a>
             <?php endforeach; ?>
-        </div>
+            </div>
     </section>
 
 

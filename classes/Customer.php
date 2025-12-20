@@ -3,6 +3,7 @@ include_once(__DIR__ . "/database.php");
 
 class Customer {
 
+    private $id;
     private $email;
     private $username;
     private $password;
@@ -21,6 +22,9 @@ class Customer {
         }   
         
         $this->password = $password;
+    }
+    public function setId($id){
+        $this->id = $id;
     }
 
     public function setEmail($email) {
@@ -43,6 +47,10 @@ class Customer {
 
     public function getEmail() {
         return $this->email;
+    }
+
+    public function getId() {
+        return $this->id;
     }
 
     public function login($p_username, $p_password){
@@ -110,4 +118,15 @@ class Customer {
         $stmt-> execute();
 
     }
+
+    public function getUserId($username){
+        $db= Database::getconnection();
+        $stmt = $db->prepare("SELECT customer_id FROM webshop.customer WHERE name = :username");
+        $stmt-> bindParam(':username', $username);
+        $stmt-> execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user['customer_id'];
+    }
+
 }

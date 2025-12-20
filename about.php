@@ -63,7 +63,7 @@
     .text-container h2{
      text-transform: uppercase;
      writing-mode: vertical-rl;
-    font-size: 50px;
+     font-size: 50px;
     }
     .text-container p  {
 
@@ -144,7 +144,6 @@
             </div>
         </section>
 
-
         <section class="brand-section">
             <div class="brand-text">
                 <h1 style="color: white;">
@@ -154,6 +153,7 @@
                 Our mission is simple: to deliver effective, gentle, and authentic skincare that celebrates diversity and empowers confidence. With Malukayi Cosmetics, you don’t just treat your skin — you honor it.</p>
              </div>
         </section>
+
     </main>
 </body>
 </html>

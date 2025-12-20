@@ -1,4 +1,13 @@
 <?php
+include_once(__DIR__ . "/classes/Productrepository.php");
+$productrepo = new ProductRepository();
+
+if (!empty($_GET['search'])) {
+    $products = $productrepo->searchByName($_GET['search']);
+} else {
+    $products = [];
+}
+
 
 ?>
 
@@ -55,12 +64,56 @@
     </header>
 
  <main class='body-products'>
+
     <section>
-        <form class="search-form" action="" method="post">
-            <input type="text" name="search" placeholder="Search...">
+        <form class="search-form" action="" method="GET">
+            <input 
+                type="text" 
+                name="search" 
+                placeholder="Search..."
+                value="<?php echo $_GET['query'] ?? ''; ?>" >
             <button type="submit">Search</button>
         </form>
     </section>
+
+    <section>
+        <div class="products-container">
+            <?php if (empty($products)): ?>
+            <p style="text-align:center;">No products found</p>
+            <?php endif; ?>
+
+            <?php foreach ($products as $product): ?>
+                <a class="product-link" href="details.php">
+                <div class="product-card">
+                <img 
+                    src="https://picsum.photos/200/300" 
+                    alt="Product Image"
+                    class="product-image"
+                />
+
+                <div class="product-info">
+                    <h2 class="product-title">
+                        <?php echo $product->getName(); ?>
+                    </h2>
+
+                    <p class="product-desc">
+                        <?php echo $product->getDescription(); ?>
+                    </p>
+
+                    <div class="product-price">
+                        € <?php echo number_format($product->getPrice(), 2); ?>
+                    </div>
+
+                    <span class="buy-btn">Buy Now</span>
+                </div>
+            </div>
+        </a>
+    <?php endforeach; ?>
+</div>
+
+
+    </section>
+
 </main>
 
 </body>

@@ -1,20 +1,50 @@
 <?php
+include_once __DIR__ . "/classes/ProductRepository.php";
+include_once __DIR__ . "/classes/Reviews.php";
 
-include_once(__DIR__ . "/data.inc.php");
+$productRepo= new ProductRepository();
 
- $id = $_GET['id'];
-  
-  if(!is_numeric($id)){
-    exit("Try Again");
+  if(!isset($_GET['id'])||!is_numeric($_GET['id'])){
+   die("invalid product ID");
   }
+  
+  $id = $_GET['id'];
 
-  $item = $collection[$id];
+  $product = $productRepo->getById($id);
 
+  if (!$product) {
+    die("Product not found");
+}
 
+// $reviewsObj = new Reviews();
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     session_start();
+
+//     if (!isset($_SESSION['username'])) {
+//         throw new Exception("You must be logged in to submit a review.");
+//     }
+
+//     if (empty(trim($_POST['review']))) {
+//         throw new Exception("Review cannot be empty.");
+//     }
+
+//     $reviewsObj->saveReview($_SESSION['username'], $id, $_POST['review']);
+
+//     // Redirect immediately after successful POST
+//     header("Location: details.php?id=" . $id);
+//     exit();
+// }
+
+// $reviews = $reviewsObj->getProductReviews($id);
 
 
 ?>
 <style>
+  h1{
+    font-size: 2rem;
+    color: #64230d;
+  }
   .details{
    margin-top: 10rem;
    display: flex;
@@ -42,33 +72,83 @@ include_once(__DIR__ . "/data.inc.php");
         color: white;
         transition: 0.5s;
   }
-
-.product-info{
-  width: 33%;
-  margin:auto;
-}
-.product-priceing{
-  width: 40%;
-  margin:auto;
-}
-.product-priceing h1{
+  .product-info{
+  width: 50%;
+  margin: 2rem;
+  }
+  .product-priceing{
+    text-align:center;
+    width: 50%;
+    margin: 2rem;
+  }
+  .product-priceing h1{
   padding:20px;
-}
-.product-priceing h2{
+  }
+  .product-priceing h2{
   margin:20px;
-}
-.price{
-  display:flex;
-}
-.product-description{
+  }
+  .product-image{
+    text-align: center;
+    height: 100%;
+  } 
+  .product-description, .product-ingredients{
+    margin-bottom: 20px;
+  }
+  .product-reviews{
+    margin-top: 5rem;
+    padding: 2rem;
+  }
+  #review{
+        border: none;
+        border-bottom: 1px solid #64230d;
+        width: 70%;
+        display: block;
+        margin-bottom: 20px;
+  }
+  .review-form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .review-form input[type="submit"] {
+        background: linear-gradient(currentColor 0 0) 
+        bottom left/
+        var(--underline-width, 0%) 0.1em
+        no-repeat;
+        font-size: larger;
+        transition: 0.5s; 
+        border: none;
+        margin: 33px;
+    }
+    .review-form input[type="submit"]:hover {
+        color: #FF802C !important;
+        --underline-width: 100%;
+    }
+    .date{
+      font-size: 0.8rem;
+      color: #ff802c7e;
+    } 
+    .username{
+      padding-bottom: 0.5rem; ;
+    }
 
-}
+    .submit-button{
+        width: 20%;
+        text-align: center;
+        background-color: transparent;
+        padding: 5px;
+        border: 2px solid #ef7d25ff;
+        border-radius: 1vw;
+        color: #ef7d25ff;;
+        cursor: pointer;
+        text-decoration: none;
+    }
 
-
-.product-image{
-  text-align: center;
-  height: 100%;
-}
+    .submit-button:hover {
+        background-color:#ef7d25ff;
+        color: white;
+        transition: 0.5s;
+    }
 </style>
 
 <!DOCTYPE html>
@@ -87,34 +167,70 @@ include_once(__DIR__ . "/data.inc.php");
   
     <section class="product-priceing">
       <div class="price">
-        <h1><?php echo ($item['name']); ?></h1>
-        <h2> <?php echo ($item['price']) ?></h2>
+        <h2><?php echo $product->getName(); ?></h2>
+        <h2> <?php echo $product->getPrice(); ?> €</h2>
       </div>
-       
-        <h2> Use case</h2>
-        <p> <?php echo($item['category'])?> </p>
         <button class='add-btn'>add to cart</button>
     </section>
 
     <section class= 'product-image'>
-    <img src="<?php echo $item['image']; ?>" alt="">
     </section>
 
     <section class='product-info'>
       <div class='product-description'>
         <h2>Description</h2>
-        <p><?php echo $item['description'] ?></p>
+        <p><?php echo $product->getDescription(); ?></p>
       </div>
       <div class='product-ingredients'>
         <h2>Ingredients</h2>
-        <?php foreach ($item['ingredients'] as $ingredient): ?>
+        <?php foreach (explode(',', $product->getIngredients()) as $ingredient): ?>
         <p><?php echo htmlspecialchars($ingredient); ?></p>
         <?php endforeach; ?> 
       </div>
-      <div><h2>Reviews</h2></div>
     </section>
 
   </div>
+    <section class='product-reviews'>
+
+       <div class="review-form"> 
+          <label for="review">Write a review:</label><br>
+          <textarea id="review" name="review" ></textarea>
+
+
+          <a  href="#" 
+              class="submit-button" 
+              id="submit-review" 
+              data-productid="<?= (int)$id ?>">Submit
+          </a>
+       </div>
+
+
+
+       <!-- <div> 
+        <form class="review-form" action=""  method="POST">
+          <label for="review">Write a review:</label><br>
+          <textarea id="review" name="review" ></textarea>
+          <input type="submit" value="Submit">
+        </form>
+       </div> -->
+
+       <div id="reviews"></div>
+
+
+       <!-- <div>
+        <h1>Reviews</h1>
+        <br>
+        <?php foreach ($reviews as $review): ?>
+          <div class='single-review'>
+            <h2 class='username'><?php echo htmlspecialchars($review['name']); ?></h2>
+            <p><?php echo htmlspecialchars($review['comment']); ?></p>
+            <span class='date'><?php echo htmlspecialchars($review['created_at']); ?></span>
+          </div>
+        <?php endforeach; ?>
+      </div> -->
+    </section>
+
+  <script src="app.js"></script>
 </body>
 </html>
 
