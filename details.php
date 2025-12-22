@@ -16,29 +16,6 @@ $productRepo= new ProductRepository();
     die("Product not found");
 }
 
-// $reviewsObj = new Reviews();
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     session_start();
-
-//     if (!isset($_SESSION['username'])) {
-//         throw new Exception("You must be logged in to submit a review.");
-//     }
-
-//     if (empty(trim($_POST['review']))) {
-//         throw new Exception("Review cannot be empty.");
-//     }
-
-//     $reviewsObj->saveReview($_SESSION['username'], $id, $_POST['review']);
-
-//     // Redirect immediately after successful POST
-//     header("Location: details.php?id=" . $id);
-//     exit();
-// }
-
-// $reviews = $reviewsObj->getProductReviews($id);
-
-
 ?>
 <style>
   h1{
@@ -154,10 +131,12 @@ $productRepo= new ProductRepository();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
    <title>malukayi cosmetics</title>
+   
 </head>
 <body>
   <header>
@@ -205,32 +184,11 @@ $productRepo= new ProductRepository();
        </div>
 
 
-
-       <!-- <div> 
-        <form class="review-form" action=""  method="POST">
-          <label for="review">Write a review:</label><br>
-          <textarea id="review" name="review" ></textarea>
-          <input type="submit" value="Submit">
-        </form>
-       </div> -->
-
        <div id="reviews"></div>
+       
 
-
-       <!-- <div>
-        <h1>Reviews</h1>
-        <br>
-        <?php foreach ($reviews as $review): ?>
-          <div class='single-review'>
-            <h2 class='username'><?php echo htmlspecialchars($review['name']); ?></h2>
-            <p><?php echo htmlspecialchars($review['comment']); ?></p>
-            <span class='date'><?php echo htmlspecialchars($review['created_at']); ?></span>
-          </div>
-        <?php endforeach; ?>
-      </div> -->
     </section>
-
-  <script src="app.js"></script>
+  <script src='app.js'></script>
 </body>
 </html>
 

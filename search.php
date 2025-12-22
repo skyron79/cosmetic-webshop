@@ -2,8 +2,11 @@
 include_once(__DIR__ . "/classes/Productrepository.php");
 $productrepo = new ProductRepository();
 
+
 if (!empty($_GET['search'])) {
     $products = $productrepo->searchByName($_GET['search']);
+ 
+   
 } else {
     $products = [];
 }
@@ -71,7 +74,7 @@ if (!empty($_GET['search'])) {
                 type="text" 
                 name="search" 
                 placeholder="Search..."
-                value="<?php echo $_GET['query'] ?? ''; ?>" >
+                value="<?php echo $_GET['search'] ?? ''; ?>" >
             <button type="submit">Search</button>
         </form>
     </section>
@@ -82,8 +85,8 @@ if (!empty($_GET['search'])) {
             <p style="text-align:center;">No products found</p>
             <?php endif; ?>
 
-            <?php foreach ($products as $product): ?>
-                <a class="product-link" href="details.php">
+            <?php foreach ($products as $product ): ?>
+                <a class="product-link"href="details.php?id=<?php echo $product->getId(); ?>">
                 <div class="product-card">
                 <img 
                     src="https://picsum.photos/200/300" 

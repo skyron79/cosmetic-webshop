@@ -1,6 +1,4 @@
-{
-//productId ?
-//comment text ?
+
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.querySelector('.submit-button');
 
@@ -45,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Network error');
         }
     });
-
     loadReviews(submitButton.dataset.productid);
 });
+
 
 async function loadReviews(productId) {
     const reviewsDiv = document.querySelector('#reviews');
@@ -56,7 +54,8 @@ async function loadReviews(productId) {
     try {
         const response = await fetch(`ajax/get_review.php?product_id=${productId}`);
         const reviews = await response.json();
-
+        console.log(reviews);
+        
         reviewsDiv.innerHTML = '';
 
         reviews.forEach(r => {
@@ -65,7 +64,7 @@ async function loadReviews(productId) {
 
             const user = document.createElement('h2');
             user.className = 'username';
-            user.textContent = r.username;
+            user.textContent = r.name;
 
             const comment = document.createElement('p');
             comment.textContent = r.comment;
@@ -81,13 +80,4 @@ async function loadReviews(productId) {
     } catch {
         reviewsDiv.innerHTML = '<p>Error loading reviews.</p>';
     }
-}
-
-//post to database (ajax)?
-
-
-
-//
-//fetch comments for productId (ajax)?
-//display comments under product
 };

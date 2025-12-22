@@ -49,7 +49,9 @@ class Reviews{
         FROM webshop.reviews r
         INNER JOIN webshop.customer c
         ON c.customer_id = r.customer_id
-        WHERE r.product_id = :product_id;");
+        WHERE r.product_id = :product_id
+        ORDER BY r.created_at DESC
+        LIMIT 5");
         $stmt-> bindParam(':product_id', $product_id);
         $stmt-> execute();
 
@@ -58,7 +60,6 @@ class Reviews{
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             $reviews[] = $row;
         }
-
         return $reviews;
     }
 
@@ -75,7 +76,7 @@ class Reviews{
                             ON c.name= :customer
                             WHERE p.product_id = :product_id;
                             ");
-                            
+
         $stmt-> bindParam(':customer', $customer);
         $stmt-> bindParam(':product_id', $product_id);
         $stmt-> bindParam(':comment', $comment);

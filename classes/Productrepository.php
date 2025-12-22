@@ -42,6 +42,7 @@ class ProductRepository {
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
                 $Product = new Product();
+                $Product->setId((int)$row['product_id']);
                 $Product->setName($row['name']);
                 $Product->setPrice($row['price']);
                 $Product->setDescription($row['description']);
