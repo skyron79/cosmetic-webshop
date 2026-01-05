@@ -24,7 +24,11 @@ try {
         // attempt registration
         if ($customer->register($username, $email, $password)) {
             // registration successful
-            header("Location: login.php");
+            header("Location: index.php");
+        }
+        
+        else {
+            throw new Exception("Registration failed. Username or email may already be in use.");
         }
     }
 

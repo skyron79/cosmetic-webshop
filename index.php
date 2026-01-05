@@ -54,33 +54,6 @@ include_once(__DIR__ . '/data.inc.php');
                 Discover the beauty of balance with Malukayi Cosmetics.</p>
         </div>
         </section>
-
-        <section class="best-sellers-container">
-
-            <div class="best-sellers">   
-                <h2 style="text-align: center; margin-top: 50px; color: #64230d;">Best Sellers</h2>
-                <div class="products-container">
-                <?php 
-                    $count=0;
-                    foreach ($collection as $key => $product ): 
-                        if($count >= 4) break ;
-                    $count++;
-                 ?>
-                
-                    <a class="product-link" href="details.php?id=<?php echo $key; ?>">
-                    <div class="product-card">
-                    <img src="<?php echo $product['image']; ?>" alt="Product Image" class="product-image" />
-                    <div class="product-info">
-                    <h2 class="product-title"><?php echo $product['name']; ?></h2>
-                    <p class="product-desc"><?php echo $product['description']; ?></p>
-                    <div class="product-price">€<?php echo $product['price']; ?></div>
-                    <a href="#" class="buy-btn">Buy Now</a>
-                    </div>
-                    </div>
-                    </a>
-                <?php endforeach; ?>
-            </div>   
-        </section>
     </main>
 
    

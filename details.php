@@ -97,15 +97,15 @@ $productRepo= new ProductRepository();
         border: none;
         margin: 33px;
     }
-    .review-form input[type="submit"]:hover {
+  .review-form input[type="submit"]:hover {
         color: #FF802C !important;
         --underline-width: 100%;
     }
-    .date{
+  .date{
       font-size: 0.8rem;
       color: #ff802c7e;
     } 
-    .username{
+  .username{
       padding-bottom: 0.5rem; ;
     }
 
@@ -126,6 +126,10 @@ $productRepo= new ProductRepository();
         color: white;
         transition: 0.5s;
     }
+  textarea{
+    resize: none;
+  }  
+
 </style>
 
 <!DOCTYPE html>
@@ -153,6 +157,7 @@ $productRepo= new ProductRepository();
     </section>
 
     <section class= 'product-image'>
+      <img src="https://picsum.photos/200/300" alt="">
     </section>
 
     <section class='product-info'>
