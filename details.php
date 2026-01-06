@@ -15,7 +15,6 @@ $productRepo= new ProductRepository();
   if (!$product) {
     die("Product not found");
 }
-
 ?>
 <style>
   h1{
@@ -153,7 +152,7 @@ $productRepo= new ProductRepository();
         <h2><?php echo $product->getName(); ?></h2>
         <h2> <?php echo $product->getPrice(); ?> €</h2>
       </div>
-        <button class='add-btn'>add to cart</button>
+        <button class='add-btn' data-productid="<?= (int)$id ?>">add to cart</button>
     </section>
 
     <section class= 'product-image'>
@@ -193,7 +192,8 @@ $productRepo= new ProductRepository();
        
 
     </section>
-  <script src='app.js'></script>
+  
 </body>
+<script src="app.js"></script>
 </html>
 

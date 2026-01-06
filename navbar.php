@@ -61,11 +61,6 @@ a{
         color: white;
         transition: 0.5s;
 }
-.icons{
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
 .navbar-container{
     margin:auto;
     width: 100%;
@@ -74,14 +69,6 @@ a{
     font-weight: 500;
     background:transparent;
     position: absolute;
-}
-
-.icons button{
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
 }
 .login-link {
     color: grey;
@@ -131,6 +118,7 @@ a{
             <li><a href="./about.php" class="<?= $current_page == 'about.php' ? 'active' : '' ?>">About</a></li>
             <li><a href="./products.php" class="<?= $current_page == 'products.php' ? 'active' : '' ?>">Products</a></li>
             <li><a href="./search.php" class="<?= $current_page == 'search.php' ? 'active' : '' ?>">Search</a></li>
+            <li><a href="./cart.php" class="<?= $current_page == 'cart.php' ? 'active' : '' ?>">Cart</a></li>
          </ul>
         </div>
     </nav>

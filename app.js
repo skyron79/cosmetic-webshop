@@ -1,8 +1,9 @@
 
+console.log('app.js loaded');
+
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.querySelector('.submit-button');
 
-    // Guard: script loaded on page without reviews
     if (!submitButton) return;
 
     const reviewInput = document.querySelector('#review');
@@ -46,6 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
     loadReviews(submitButton.dataset.productid);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const addButton= document.querySelector('.add-btn');
+
+    if (!addButton) return;
+    addButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+    console.log('Add to cart button clicked');
+});
+
+    
+});
+
+
 
 async function loadReviews(productId) {
     const reviewsDiv = document.querySelector('#reviews');
@@ -54,7 +68,7 @@ async function loadReviews(productId) {
     try {
         const response = await fetch(`ajax/get_review.php?product_id=${productId}`);
         const reviews = await response.json();
-        console.log(reviews);
+       
         
         reviewsDiv.innerHTML = '';
 

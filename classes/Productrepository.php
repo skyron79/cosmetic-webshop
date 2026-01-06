@@ -79,5 +79,27 @@ class ProductRepository {
             
         }
 
+        public function filterByCategory($category_id){
+            $db= Database:: getConnection();
+            $stmt = $db->prepare("SELECT * FROM webshop.product WHERE category_id = :category_id");
+            $stmt -> execute([':category_id' => $category_id]);
+            $products = [];
+
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+            $Product = new Product();
+            $Product->setId((int)$row['product_id']);
+            $Product->setName($row['name']);
+            $Product->setPrice($row['price']);
+            $Product->setDescription($row['description']);
+            $Product->setIngredients($row['ingredients']);
+            $Product->setStock($row['stock']);
+
+            $products[] = $Product;
+
+         }
+
+            return $products;
+        }
     
 }
