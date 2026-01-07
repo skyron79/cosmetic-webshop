@@ -1,15 +1,14 @@
-{
-//productId ?
-//comment text ?
+
+console.log('app.js loaded');
+
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.querySelector('.submit-button');
 
-    // Guard: script loaded on page without reviews
     if (!submitButton) return;
 
     const reviewInput = document.querySelector('#review');
-    const reviewsDiv = document.querySelector('#reviews');
-
+    
+    console.log('Submit button found');
     submitButton.addEventListener('click', async (e) => {
         e.preventDefault();
 
@@ -45,9 +44,22 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Network error');
         }
     });
-
     loadReviews(submitButton.dataset.productid);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const addButton= document.querySelector('.add-btn');
+
+    if (!addButton) return;
+    addButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+    console.log('Add to cart button clicked');
+});
+
+    
+});
+
+
 
 async function loadReviews(productId) {
     const reviewsDiv = document.querySelector('#reviews');
@@ -56,7 +68,8 @@ async function loadReviews(productId) {
     try {
         const response = await fetch(`ajax/get_review.php?product_id=${productId}`);
         const reviews = await response.json();
-
+       
+        
         reviewsDiv.innerHTML = '';
 
         reviews.forEach(r => {
@@ -65,7 +78,7 @@ async function loadReviews(productId) {
 
             const user = document.createElement('h2');
             user.className = 'username';
-            user.textContent = r.username;
+            user.textContent = r.name;
 
             const comment = document.createElement('p');
             comment.textContent = r.comment;
@@ -81,13 +94,4 @@ async function loadReviews(productId) {
     } catch {
         reviewsDiv.innerHTML = '<p>Error loading reviews.</p>';
     }
-}
-
-//post to database (ajax)?
-
-
-
-//
-//fetch comments for productId (ajax)?
-//display comments under product
 };

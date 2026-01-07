@@ -1,41 +1,40 @@
 <?php
-include_once(__DIR__ . '/classes/Customer.php');
+include_once 'classes/Customer.php';
 
 try {
-    session_start();
-} catch (Exception $e) {
-    // Session already started
-}
 
-try {
-    if (!empty($_POST)) {
+    if(!empty($_POST)){
 
-        // retrieve data from form
+        // retrieve data from Form 
         $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-       
+        $oldPassword = $_POST['password'];
+        $newPassword = $_POST['new_password'];
+        $confirmNewPassword = $_POST['confirm_new_password'];
+
         // create customer object
         $customer = new Customer();
-        $customer->setUsername($username);
-        $customer->setEmail($email);
-        $customer->setPassword($password);
+        var_dump($customer);
 
-        // attempt registration
-        if ($customer->register($username, $email, $password)) {
-            // registration successful
-            header("Location: index.php");
-        }
-        
-        else {
-            throw new Exception("Registration failed. Username or email may already be in use.");
+        // compare new password and confirm new password
+        if($newPassword !== $confirmNewPassword){
+            throw new Exception("please match the new password");
+
+            
+        }else{
+            // if match update password
+            if($customer->updatePassword($username, $oldPassword, $newPassword)){
+                header("Location: login.php"); 
+            }
         }
     }
 
-} catch (Exception $e) {
+
+}catch(Exception $e){
     $error = $e->getMessage();
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,23 +42,29 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>malukayi cosmetics</title>
+    <title>Document</title>
 </head>
-
 <style>
+
     body {
         background-image: url('./assets/pictures/loginImage.jpg');
         background-size: cover;
         background-position: center;
         height: 100vh;
     }
-
+    .logo-container img{
+        margin-top: 50px;
+        align-items: center;
+        height: 150px;
+        padding: 20px;
+        border-radius: 50%;
+    }
     .login-form {
         height: 100vh;
-        padding-top: 40%;
+        margin: auto;
+        padding-top: 20%;
         padding-left:5%;
         padding-right: 5%;
-        margin: auto;
         width: 400px;
         border-radius: 10px;
    
@@ -88,13 +93,12 @@ try {
         border: 2px solid #64230d; ;
         border-radius: 1vw;
         color: #64230d;;
-        
         cursor: pointer;
     }
     .login-button:hover {
         background-color:#64230d;
         color: white;
-        transition: 0.3s;
+        transition: 0.5s;
     }
     
     .login-page {
@@ -128,7 +132,6 @@ try {
          color: #FF802C !important;
         --underline-width: 100%;
     }
-
     .error-box{
         padding: 12px 15px;
         margin:auto;
@@ -142,33 +145,33 @@ try {
     }
 
 </style>
+
+
 <body> 
     <div  class="login-page">
         <a class="back-button" href="index.php">back</a>
 
-        
-
         <div class="login-form">
-            
-            
-            <h2>Create an account</h2>
-
-            <?php if(isset($error)): ?>
+        <?php if(isset($error)): ?>
             <div class="error-box show">
             <?php echo $error; ?>
             </div>
+        <?php endif; ?>
 
-            <?php endif; ?>
-            
+    
+
+        <h2>Log In</h2>
             <form action="" method="POST">
-                <input class="login-input" type="text" id="username" name="username"  placeholder="Enter username" required>
-                <input class="login-input" type="email" id="email" name="email" placeholder="Enter email" required>
-                <input class="login-input" type="password" id="password" name="password" placeholder="Enter password" required>
+                <input class="login-input" type="text" id="username" name="username"  placeholder="Enter username" >
+                <input class="login-input" type="password" id="password" name="password" placeholder="current password" >
+                <input class="login-input" type="password" id="new_password" name="new_password" placeholder="new password" >
+                <input class="login-input" type="password" id="confirm_new_password" name="confirm_new_password" placeholder="confirm new password" >
+
             
-                <button class="login-button" type="submit">Sign Up</button>
-                <button class="login-button" type="button" onclick="window.location.href='login.php'">Log In</button>
+                <input type="submit" class="login-button" value="Update Password">
             </form>
     </div>
-   </div>
+    
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
-include_once(__DIR__ . "/classes/customer.php");
- 
+session_start();
+include_once 'classes/Customer.php';
+
 try{
 
     if(!empty($_POST)){
@@ -19,6 +20,7 @@ try{
             session_start();
             $_SESSION['username'] = $customer->getUsername();
             header("Location: index.php");
+            exit;
             
         } else {
             throw new Exception("Invalid username or password");
@@ -57,7 +59,7 @@ try{
     .login-form {
         height: 100vh;
         margin: auto;
-        padding-top: 15%;
+        padding-top: 10%;
         padding-left:5%;
         padding-right: 5%;
         width: 400px;
@@ -138,28 +140,40 @@ try{
         font-family: Arial, sans-serif;
         width: fit-content;
     }
+    .change{
+        background: linear-gradient(currentColor 0 0) 
+        bottom left/
+        var(--underline-width, 0%) 0.1em
+        no-repeat;
+        transition: 0.5s;   
+        color:black;
+    }
+    
+    .change:hover{
+     color: #FF802C !important;
+        --underline-width: 100%;
+    }
 
 </style>
-
 
 <body> 
     <div  class="login-page">
         <a class="back-button" href="index.php">back</a>
 
-    <div class="login-form">
-        <div class="logo-container">
+        <div class="login-form">
+            <div class="logo-container">
             <img class="logo-signup" src="./assets/pictures/images.jpg" alt="">
-        </div>
+            </div>
 
-        <?php if(isset($error)): ?>
+            <?php if(isset($error)): ?>
             <div class="error-box show">
             <?php echo $error; ?>
             </div>
-        <?php endif; ?>
+            <?php endif; ?>
 
     
 
-        <h2>Log In</h2>
+             <h2>Log In</h2>
             <form action="" method="POST">
                 <input class="login-input" type="text" id="username" name="username"  placeholder="Enter username" >
                 <input class="login-input" type="password" id="password" name="password" placeholder="Enter password" >
@@ -167,7 +181,13 @@ try{
                 <input type="submit" class="login-button" value="Log In">
                 <button class="login-button" type="button" onclick="window.location.href='signUp.php'">Sign Up</button>
             </form>
+            <br>
+            <p>would you like to change your password ?</p><a class="change" href="update.php">change password</a>
+        </div>
+        
+
     </div>
+   
     
 
 </body>
