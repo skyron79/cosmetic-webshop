@@ -28,7 +28,7 @@ $customer = new Customer();
 }
 .navbar li a {
     text-decoration: none;
-    color: grey;
+    color: #847f7fff;
     padding: 5px 10px;
     border-radius: 5px;
 }

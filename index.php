@@ -55,12 +55,6 @@ include_once(__DIR__ . '/data.inc.php');
         </div>
         </section>
     </main>
-
-   
-    
-
-
-
-
+    <script src="app.js"></script>
 </body>
 </html>

@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!submitButton) return;
 
     const reviewInput = document.querySelector('#review');
-    const reviewsDiv = document.querySelector('#reviews');
-
+    
+    console.log('Submit button found');
     submitButton.addEventListener('click', async (e) => {
         e.preventDefault();
 

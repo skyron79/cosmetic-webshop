@@ -8,7 +8,7 @@ vereisten voldoet.
 [ ] | Gebruiker kan een aankoop doen via winkelmandje
 [x] | Gebruiker kan een review of comment plaatsen
 [x] | Gebruiker kan producten filteren per categorie
-[ ] | Gebruiker kan wachtwoord wijzigen
+[x] | Gebruiker kan wachtwoord wijzigen
 [ ] | Gebruiker kan bestellingen bekijken
 [x] | Noodzakelijke controles werken (prijs > 0, voldoende cash, …)
 [ ] | Het project staat online en werkt

@@ -73,6 +73,42 @@ class Customer {
         
     }
 
+    public function updatePassword($p_username,$oldPassword,$newPassword){
+    
+            $db= Database::getconnection();
+            $stmt = $db->prepare("SELECT * FROM customer WHERE name = :username");
+            $stmt-> bindParam(':username', $p_username);
+            $stmt-> execute();
+    
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+             // 3. Verify old password
+             if(password_verify($oldPassword, $user['password'])){
+                
+                $option=[
+                    'cost'=>12
+                ];
+        
+                $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT, $option);
+        
+                $updateStmt = $db->prepare("UPDATE customer SET password = :newPassword WHERE name = :username");
+                $updateStmt-> bindParam(':newPassword', $hashedNewPassword);
+                $updateStmt-> bindParam(':username', $p_username);
+                $updateStmt-> execute();
+                
+                return true; // Password update successful
+        
+                } else {
+
+                throw new Exception("Invalid current password");
+        
+                }
+      
+
+
+      
+    }
+
     //private functie check op username en email
     private function checkUser(){
 

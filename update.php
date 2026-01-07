@@ -1,37 +1,40 @@
 <?php
-session_start();
 include_once 'classes/Customer.php';
 
-try{
+try {
 
     if(!empty($_POST)){
-        // retrieve data from form
+
+        // retrieve data from Form 
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $oldPassword = $_POST['password'];
+        $newPassword = $_POST['new_password'];
+        $confirmNewPassword = $_POST['confirm_new_password'];
 
         // create customer object
         $customer = new Customer();
-        $customer->setUsername($username);
-        $customer->setPassword($password);  
+        var_dump($customer);
 
-        if ($customer->login($username, $password)) {
-          
-            // login successful
-            session_start();
-            $_SESSION['username'] = $customer->getUsername();
-            header("Location: index.php");
-            exit;
+        // compare new password and confirm new password
+        if($newPassword !== $confirmNewPassword){
+            throw new Exception("please match the new password");
+
             
-        } else {
-            throw new Exception("Invalid username or password");
+        }else{
+            // if match update password
+            if($customer->updatePassword($username, $oldPassword, $newPassword)){
+                header("Location: login.php"); 
+            }
         }
-    }  
+    }
 
-} catch(Exception $e){
-   $error = $e->getMessage(); 
+
+}catch(Exception $e){
+    $error = $e->getMessage();
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +42,10 @@ try{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>malukayi cosmetics</title>
+    <title>Document</title>
 </head>
-
 <style>
+
     body {
         background-image: url('./assets/pictures/loginImage.jpg');
         background-size: cover;
@@ -59,7 +62,7 @@ try{
     .login-form {
         height: 100vh;
         margin: auto;
-        padding-top: 10%;
+        padding-top: 20%;
         padding-left:5%;
         padding-right: 5%;
         width: 400px;
@@ -140,54 +143,34 @@ try{
         font-family: Arial, sans-serif;
         width: fit-content;
     }
-    .change{
-        background: linear-gradient(currentColor 0 0) 
-        bottom left/
-        var(--underline-width, 0%) 0.1em
-        no-repeat;
-        transition: 0.5s;   
-        color:black;
-    }
-    
-    .change:hover{
-     color: #FF802C !important;
-        --underline-width: 100%;
-    }
 
 </style>
+
 
 <body> 
     <div  class="login-page">
         <a class="back-button" href="index.php">back</a>
 
         <div class="login-form">
-            <div class="logo-container">
-            <img class="logo-signup" src="./assets/pictures/images.jpg" alt="">
-            </div>
-
-            <?php if(isset($error)): ?>
+        <?php if(isset($error)): ?>
             <div class="error-box show">
             <?php echo $error; ?>
             </div>
-            <?php endif; ?>
+        <?php endif; ?>
 
     
 
-             <h2>Log In</h2>
+        <h2>Log In</h2>
             <form action="" method="POST">
                 <input class="login-input" type="text" id="username" name="username"  placeholder="Enter username" >
-                <input class="login-input" type="password" id="password" name="password" placeholder="Enter password" >
-            
-                <input type="submit" class="login-button" value="Log In">
-                <button class="login-button" type="button" onclick="window.location.href='signUp.php'">Sign Up</button>
-            </form>
-            <br>
-            <p>would you like to change your password ?</p><a class="change" href="update.php">change password</a>
-        </div>
-        
+                <input class="login-input" type="password" id="password" name="password" placeholder="current password" >
+                <input class="login-input" type="password" id="new_password" name="new_password" placeholder="new password" >
+                <input class="login-input" type="password" id="confirm_new_password" name="confirm_new_password" placeholder="confirm new password" >
 
+            
+                <input type="submit" class="login-button" value="Update Password">
+            </form>
     </div>
-   
     
 
 </body>
