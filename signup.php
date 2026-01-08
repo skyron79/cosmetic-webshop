@@ -22,17 +22,24 @@ try {
         $customer->setPassword($password);
 
         // attempt registration
-        if ($customer->register($username, $email, $password)) {
+        try {
+            $customer->register($username, $email, $password);
+            
             // registration successful
+            session_start();
+            $_SESSION['username'] = $customer->getUsername();
+            
             header("Location: index.php");
+            exit;
+
+        }catch (Exception $e) {
+            throw new Exception("Registration failed. Please try again.");
         }
-        
-        else {
-            throw new Exception("Registration failed. Username or email may already be in use.");
-        }
+
     }
 
 } catch (Exception $e) {
+
     $error = $e->getMessage();
 }
 ?>
@@ -42,7 +49,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="./css/style.css">
     <title>malukayi cosmetics</title>
 </head>
 
@@ -142,6 +149,7 @@ try {
     }
 
 </style>
+
 <body> 
     <div  class="login-page">
         <a class="back-button" href="index.php">back</a>

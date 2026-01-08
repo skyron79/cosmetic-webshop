@@ -13,7 +13,6 @@ try {
 
         // create customer object
         $customer = new Customer();
-        var_dump($customer);
 
         // compare new password and confirm new password
         if($newPassword !== $confirmNewPassword){
@@ -22,9 +21,12 @@ try {
             
         }else{
             // if match update password
-            if($customer->updatePassword($username, $oldPassword, $newPassword)){
-                header("Location: login.php"); 
-            }
+            if( $customer->updatePassword($username, $oldPassword, $newPassword)){
+                
+                // password updated successfully
+                header("Location: login.php");
+                exit;
+            } 
         }
     }
 
@@ -41,7 +43,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <style>

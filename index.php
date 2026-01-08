@@ -4,7 +4,7 @@ include_once(__DIR__ . '/data.inc.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>malukayi cosmetics</title>
@@ -42,7 +42,7 @@ include_once(__DIR__ . '/data.inc.php');
 <body>
 <section>
     <header>
-        <?php include_once(__DIR__ . '/navbar.php'); ?>
+        <?php include_once(__DIR__ . '/includes/navbar.php'); ?>
     </header>
     <main>
         <section class="hero-section">

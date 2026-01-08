@@ -19,7 +19,7 @@ if (!empty($_GET['search'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="./css/style.css">
     <title>malukayi cosmetics</title>
 </head>
 
@@ -63,7 +63,7 @@ if (!empty($_GET['search'])) {
 
 <body>
     <header>
-        <?php include_once(__DIR__ . '/navbar.php'); ?>
+        <?php include_once(__DIR__ . '/includes/navbar.php'); ?>
     </header>
 
  <main class='body-products'>

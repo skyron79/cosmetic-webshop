@@ -46,8 +46,8 @@ class Reviews{
         $db= Database::getConnection();
         $stmt = $db->prepare("
         SELECT c.name, r.comment, r.created_at 
-        FROM webshop.reviews r
-        INNER JOIN webshop.customer c
+        FROM reviews r
+        INNER JOIN customer c
         ON c.customer_id = r.customer_id
         WHERE r.product_id = :product_id
         ORDER BY r.created_at DESC
@@ -66,13 +66,13 @@ class Reviews{
     public function saveReview($customer, $product_id, $comment){
 
         $db= Database::getConnection();
-        $stmt = $db->prepare("INSERT INTO webshop.reviews (product_id, customer_id, comment)
+        $stmt = $db->prepare("INSERT INTO reviews (product_id, customer_id, comment)
                             SELECT  
                             p.product_id,
                             c.customer_id,
                             :comment
-                            FROM webshop.product p
-                            JOIN webshop.customer c 
+                            FROM product p
+                            JOIN customer c 
                             ON c.name= :customer
                             WHERE p.product_id = :product_id;
                             ");

@@ -157,7 +157,7 @@ class Customer {
 
     public function getUserId($username){
         $db= Database::getconnection();
-        $stmt = $db->prepare("SELECT customer_id FROM webshop.customer WHERE name = :username");
+        $stmt = $db->prepare("SELECT customer_id FROM customer WHERE name = :username");
         $stmt-> bindParam(':username', $username);
         $stmt-> execute();
 
