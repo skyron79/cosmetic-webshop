@@ -1,8 +1,8 @@
 <?php
 
 $current_page = basename($_SERVER['PHP_SELF']);
-include_once(__DIR__ . "/classes/Productrepository.php");
-include_once(__DIR__ . "/classes/Categories.php");
+include_once(__DIR__ . '/classes/productrepository.php');
+include_once(__DIR__ . '/classes/categories.php');
 // include_once(__DIR__. 'data.inc.php');
 
 $productrepo = new ProductRepository();
@@ -25,7 +25,7 @@ if (isset($_GET['category_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="./css/style.css">
     <title>malukayi cosmetics</title>
 </head>
 
@@ -68,7 +68,7 @@ if (isset($_GET['category_id'])) {
 <body>
   
     <header>
-        <?php include_once(__DIR__ . '/navbar.php'); ?>
+        <?php include_once(__DIR__ . '/includes/navbar.php'); ?>
     </header>
     <main class='body-products'>
 

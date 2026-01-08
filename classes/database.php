@@ -5,7 +5,9 @@ class Database {
 
    public static function getConnection() {
        if (self::$db == null) {
-           self::$db = new PDO("mysql:host=localhost;port=3306;dbname=webshop", "root", "");
+           self::$db = new PDO("mysql:host=centerbeam.proxy.rlwy.net;port=30899;dbname=railway", 
+           "root",
+            "kpyvDzJDdvOGGFwvoYwjvToaWHcyepEM");
        }
 
        return self::$db;

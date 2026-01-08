@@ -1,5 +1,4 @@
 
-console.log('app.js loaded');
 
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.querySelector('.submit-button');
@@ -8,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const reviewInput = document.querySelector('#review');
     
-    console.log('Submit button found');
+    
     submitButton.addEventListener('click', async (e) => {
         e.preventDefault();
 

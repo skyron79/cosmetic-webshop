@@ -7,7 +7,7 @@ class ProductRepository {
 
         public function getAll(){
             $db= Database:: getConnection();
-            $stmt = $db->prepare("SELECT * FROM webshop.product");
+            $stmt = $db->prepare("SELECT * FROM product");
             $stmt -> execute();
             $products = [];
 
@@ -31,7 +31,7 @@ class ProductRepository {
         public function searchByName($query){
             $db= Database:: getConnection();
 
-            $stmt= $db->prepare("SELECT * FROM webshop.product WHERE name LIKE :search");
+            $stmt= $db->prepare("SELECT * FROM product WHERE name LIKE :search");
             $stmt->execute([
                 ':search' => '%'. $query. '%'
             ]);
@@ -58,7 +58,7 @@ class ProductRepository {
 
         public function getById($id)  {
             $db= Database:: getConnection();
-            $stmt = $db ->prepare("SELECT * FROM webshop.product WHERE product_id = :id");
+            $stmt = $db ->prepare("SELECT * FROM product WHERE product_id = :id");
             $stmt ->execute([':id' => $id]);
 
             $row= $stmt->fetch(PDO::FETCH_ASSOC);
@@ -81,7 +81,7 @@ class ProductRepository {
 
         public function filterByCategory($category_id){
             $db= Database:: getConnection();
-            $stmt = $db->prepare("SELECT * FROM webshop.product WHERE category_id = :category_id");
+            $stmt = $db->prepare("SELECT * FROM product WHERE category_id = :category_id");
             $stmt -> execute([':category_id' => $category_id]);
             $products = [];
 

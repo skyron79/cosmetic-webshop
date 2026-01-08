@@ -1,10 +1,11 @@
 <?php
 session_start();
 $current_page = basename($_SERVER['PHP_SELF']);
-include_once(__DIR__ . "/classes/customer.php");
+include_once(__DIR__ . "/../classes/customer.php");
 
 $customer = new Customer();
-
+// $file=__DIR__;
+// var_dump(__DIR__);
 // $logOut = $customer->logout();
 
 ?>
@@ -13,6 +14,7 @@ $customer = new Customer();
 <head>
    <script src="https://kit.fontawesome.com/9fe4bfcebd.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -63,12 +65,14 @@ a{
 }
 .navbar-container{
     margin:auto;
-    width: 100%;
+    width: 80%;
     padding: 0px 15px;
     font-size: 1.2rem;
     font-weight: 500;
-    background:transparent;
+    background: transparent;
     position: absolute;
+    justify-self: center;
+    top: 0;
 }
 .login-link {
     color: grey;
@@ -78,12 +82,11 @@ a{
     font-weight: bold;
     transition: 0.3s;
 }
-
 </style>
 
 <body>
     <div class="container">
-    <nav class="navbar-container">
+        <nav class="navbar-container">
         <div class="logo-container">
               <div>   
                 <?php 
@@ -114,14 +117,14 @@ a{
 
         <div class="links-container">
           <ul class="navbar">
-            <li><a href="./index.php" class="<?= $current_page === 'index.php' ? 'active' : '' ?>">Home</a></li>
-            <li><a href="./about.php" class="<?= $current_page == 'about.php' ? 'active' : '' ?>">About</a></li>
-            <li><a href="./products.php" class="<?= $current_page == 'products.php' ? 'active' : '' ?>">Products</a></li>
-            <li><a href="./search.php" class="<?= $current_page == 'search.php' ? 'active' : '' ?>">Search</a></li>
-            <li><a href="./cart.php" class="<?= $current_page == 'cart.php' ? 'active' : '' ?>">Cart</a></li>
+            <li><a href="index.php" class="<?= $current_page === 'index.php' ? 'active' : '' ?>">Home</a></li>
+            <li><a href="about.php" class="<?= $current_page == 'about.php' ? 'active' : '' ?>">About</a></li>
+            <li><a href="products.php" class="<?= $current_page == 'products.php' ? 'active' : '' ?>">Products</a></li>
+            <li><a href="search.php" class="<?= $current_page == 'search.php' ? 'active' : '' ?>">Search</a></li>
+            <li><a href="cart.php" class="<?= $current_page == 'cart.php' ? 'active' : '' ?>">Cart</a></li>
          </ul>
         </div>
-    </nav>
+        </nav>
     </div>
 </body>
 </html> 
